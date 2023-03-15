@@ -29,20 +29,18 @@ class Result
     {
         int pieces = 0;
         
-        for(int i = 0; i < s.Count - m; i++){
-             
-             // Fix this condition
-            if(m == 1 && s[i] == d) {
+        // For loop runs for the length of the contiguous chocolate bar piece (which is 'm') with an offset of 1 because of i's initial value of 0
+        for(int i = 0; i + m - 1 < s.Count; i++){
+           int tracker = 0;
+            
+            // For loop runs for the length of the contiguous chocolate bar piece but starting at i's current position/index and sums the values at each square
+            for(int j = i; j < m + i; j++) {
+                tracker = tracker + s[j];
+            }
+           
+           // Checks at each starting chocolate square
+            if(tracker == d) {
                 pieces = pieces + 1;
-            } else {
-                int tracker = 0;
-                for(int j = 0; j < m; j++) {
-                    tracker = tracker + s[i + j];
-                }
-                
-                if(tracker == d) {
-                    pieces = pieces + 1;
-                }
             }
         }
         
